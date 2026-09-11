@@ -1,0 +1,18 @@
+FAST RADIO — UPDATE PLAN
+
+Base: Fast Radio-2D
+
+Rules:
+- Keep playback engines; do not remove them to save APK size.
+- Keep all windows fixed-size; no resize feature.
+- Keep games removed.
+- Recording output is .amr with information in filename only; no custom tags.
+- Filename order: Country_Station_Genre_CountryCode_Date_Time.amr
+- Main station columns: List 1 = Fast Radio internal, List 2 = Iran Radio.
+- Translation window is fixed open.
+- Subtitle windows open by click; multiple/all can be open.
+- Internet speed and calendar day number appear in the radio pull-down/menu.
+- Information/warning panel sits below the radio.
+- New information blinks its warning lamp for 10 seconds.
+- Ten colored lamps run from the adjacent button.
+- Every GitHub Actions build must upload build.log.
