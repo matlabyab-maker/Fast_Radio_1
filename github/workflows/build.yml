@@ -1,0 +1,79 @@
+name: Build Fast Radio
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Set up Gradle 8.9
+        uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: '8.9'
+
+      - name: Build Debug APK
+        id: build
+        shell: bash
+        run: |
+          set +e
+
+          {
+            echo "=== Fast Radio Build Log ==="
+            echo "Date (UTC): $(date -u)"
+            echo "Repository: $GITHUB_REPOSITORY"
+            echo "Commit: $GITHUB_SHA"
+            echo "Java:"
+            java -version
+            echo "Gradle:"
+            gradle --version
+            echo ""
+            echo "=== BUILD START ==="
+          } > build.log 2>&1
+
+          gradle --no-daemon assembleDebug --stacktrace --info >> build.log 2>&1
+          STATUS=$?
+
+          {
+            echo ""
+            echo "=== APK FILES ==="
+            find . -type f -name "*.apk" -print
+            echo ""
+            echo "BUILD EXIT CODE: $STATUS"
+            echo "=== BUILD END ==="
+          } >> build.log 2>&1
+
+          exit $STATUS
+
+      - name: Upload Build Log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Fast-Radio-Build-Log
+          path: build.log
+          if-no-files-found: warn
+
+      - name: Upload APK
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: Fast-Radio-APK
+          path: app/build/outputs/apk/**/*.apk
+          if-no-files-found: error
