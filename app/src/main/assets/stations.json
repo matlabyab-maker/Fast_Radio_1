@@ -1,0 +1,17 @@
+{
+  "groups": [
+    {"name":"ایران","stations":[]},
+    {"name":"روسیه","stations":["Radio Sputnik فارسی","RT"]},
+    {"name":"ژاپن","stations":["NHK"]},
+    {"name":"چین","stations":["China Radio"]},
+    {"name":"تایلند","stations":["Thailand Radio"]},
+    {"name":"مالزی","stations":["Malaysia Radio"]},
+    {"name":"اندونزی","stations":["Indonesia Radio"]},
+    {"name":"فیلیپین","stations":["Philippines Radio"]},
+    {"name":"ویتنام","stations":["Vietnam Radio"]},
+    {"name":"میانمار","stations":["Myanmar Radio"]},
+    {"name":"اروپا","stations":[]},
+    {"name":"آمریکا","stations":["CNN News"]},
+    {"name":"اخبار","stations":["Iran International","Afghanistan International","i24NEWS Hebrew","BBC فارسی"]}
+  ]
+}
